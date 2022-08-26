@@ -2,7 +2,13 @@
 
 def luhnsAlgorithm(num):
     try:
+
+
         num = num[:-1]
+
+        if len(num) != 9:
+            print("WRONG FORMAT")
+
         resulting_sum = 0
 
         for index, value in enumerate(num):

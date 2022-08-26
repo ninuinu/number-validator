@@ -54,4 +54,4 @@ class Personnummer:
                 print("ERROR werwre")
 
     def isValidLastNumber(self, pn):
-        luhnsAlgorithm(pn)
+        return luhnsAlgorithm(pn) == int(pn[-1])
