@@ -4,8 +4,8 @@ from entities.Organisationsnummer import Organisationsnummer
 
 def numberValidator(args):
     #Personnummer(args)
-    Samordningsnummer(args)
-    #Organisationsnummer(args)
+    #Samordningsnummer(args)
+    Organisationsnummer(args)
 
 def test():
     print("testing")
@@ -48,7 +48,7 @@ def test():
             "857202-7566"]
 
 
-    for i in test_samordningsnummer:
+    for i in test_organisationsnummer:
         numberValidator(str(i))
 
 if __name__ == "__main__":

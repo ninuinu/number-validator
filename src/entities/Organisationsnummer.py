@@ -1,54 +1,45 @@
-
-from datetime import datetime
 from src.util.luhnsAlgorithm import luhnsAlgorithm
+from src.util.validPatterns import orgnummerPattern as validPatterns
 import re
 
 
 class Organisationsnummer:
     def __init__(self, number):
-        self.patterns = {
-            "six_hyphen_four": "^(\d{6})-(\d{4})$",
-            "eight_hyphen_four": "^(\d{8})-(\d{4})$",
-            "ten_digits": "^(\d{10})$",
-            "twelve_digits": "^(\d{12})$"}
-        if self.isValid(number):
-            self.number = number
+        assert (self.isValid(number))
+        self.number = number
 
     def isValid(self, pn):
         try:
-            self.isValidFormat(pn)
+            self.checkFormat(pn)
             processed_orgNum = self.standardizeOrgNumberFormat(pn)
-            self.isValidThirdDigit(processed_orgNum)
-            self.isValidLastNumber(processed_orgNum)
+            self.checkThirdDigit(processed_orgNum)
+            self.checkLastNumber(processed_orgNum)
             return True
 
         except Exception as e:
-            print(e)
+            raise(e)
 
-    def isValidFormat(self, pn):
-        try:
-            for k, v in self.patterns.items():
-                if re.match(v, pn):
-                    return True
-        except:
-            print("ERROR")
+    def checkFormat(self, pn):
+        for value in validPatterns().values():
+            if re.match(value, pn):
+                return True
+        raise Exception("ERROR: Input value \"{}\" has an invalid format".format(pn))
 
     def standardizeOrgNumberFormat(self, orgNum):
-        if orgNum:
-            orgNum = orgNum.replace("-", "")
-            if len(orgNum) == 12:
-                orgNum = orgNum[2:]
-            return orgNum
+        orgNum = orgNum.replace("-", "")
+        if len(orgNum) == 12:
+            orgNum = orgNum[2:]
+        return orgNum
 
-    def isValidThirdDigit(self, pn):
+    def checkThirdDigit(self, pn):
         thirdDigit = int(pn[2])
-        return thirdDigit >= 2
+        if thirdDigit >= 2:
+            return True
+        else:
+            raise Exception("ERROR: Input value \"{}\" has an invalid third digit".format(pn))
 
-    def isValidLastNumber(self, pn):
-        try:
-            if luhnsAlgorithm(pn) == int(pn[-1]):
-                return
-            else:
-                print("EEEEEEEEEEERROR")
-        except:
-            "ERROR"
+    def checkLastNumber(self, pn):
+        if luhnsAlgorithm(pn) == int(pn[-1]):
+            return True
+        else:
+            raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))

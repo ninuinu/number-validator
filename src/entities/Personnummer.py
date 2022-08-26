@@ -3,6 +3,7 @@ from src.util.luhnsAlgorithm import luhnsAlgorithm
 from src.util.validPatterns import personnummerPattern as validPatterns
 import re
 
+
 class Personnummer:
     def __init__(self, number):
         assert (self.isValid(number))
