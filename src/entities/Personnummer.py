@@ -56,6 +56,7 @@ class Personnummer:
         try:
             date = pn[:8]
             datetime.strptime(date, '%Y%m%d')
+            return True
         except:
             raise Exception("ERROR: Input value \"{}\" has an invalid date".format(pn))
 
