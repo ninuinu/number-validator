@@ -1,13 +1,11 @@
 
 
 def luhnsAlgorithm(num):
-    try:
 
-
-        num = num[:-1]
+        num = num[:-1] if len(num) == 10 else num[2:-1]
 
         if len(num) != 9:
-            print("WRONG FORMAT")
+            raise Exception("ERROR: Input value \"{}\" is of incorrect length".format(num))
 
         resulting_sum = 0
 
@@ -27,9 +25,5 @@ def luhnsAlgorithm(num):
             return 0
         else:
             return (10 - (resulting_sum % 10)) % 10
-
-    except Exception as e:
-        print("ERROR")
-        print(e)
 
 
