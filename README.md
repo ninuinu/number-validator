@@ -24,9 +24,9 @@ python main.py 900118+9811
 ![example](https://user-images.githubusercontent.com/28160364/186970549-7687064f-fb64-405a-9ee9-18d4937c1bb7.PNG)
 
 
-## To run tests:
+## To Run The Test Suite:
 
-1. Navigate to the /test directory in a terminal window and run:
+1. Navigate to the **/tests** directory in a terminal window and run:
 ```
 python TestSuite.py
 ```
