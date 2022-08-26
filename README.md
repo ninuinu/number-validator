@@ -23,6 +23,7 @@ to run the default test cases provided in the testCases.py file, located under *
 ## Project Structure  
          
     .    
+    
     ├── src                    
     │    ├── entities                   
     │    │      ├── Personnummer.py               # Personnummer class containing all logic for personnummer verification
@@ -44,10 +45,5 @@ to run the default test cases provided in the testCases.py file, located under *
          │
          │── testCases.py                         # file containing invalid and valid test cases for each number type
          └── TestSuite.py                         # Main point of execution for running all test cases
-         
-         
-         
-         
-         
          
     .
