@@ -1,5 +1,10 @@
 # number-validator
 
+## Prerequisites:
+
+* Make sure to have Python3 installed.
+
+
 ## Getting Started:
 
 1. Clone the repo, or download the project as a zip file and extract it.
