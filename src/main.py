@@ -3,9 +3,9 @@ from entities.Samordningsnummer import Samordningsnummer
 from entities.Organisationsnummer import Organisationsnummer
 
 def numberValidator(args):
-    #Personnummer(args)
+    Personnummer(args)
     #Samordningsnummer(args)
-    Organisationsnummer(args)
+    #Organisationsnummer(args)
 
 def test():
     print("testing")
@@ -24,6 +24,13 @@ def test():
             "189102279800",
             "189912299816"]
 
+    test_personnummer_incorrect = [
+        "",
+        "abme-3251",
+        "929302-12312",
+        "960610-9502"
+    ]
+
     test_samordningsnummer = ["141266-2380",
             "201701702384",
             "20080963-2386",
@@ -35,7 +42,8 @@ def test():
             "262000-1111",
             "857202-7566"]
 
-    for i in test_organisationsnummer:
+
+    for i in test_personnummer_incorrect:
         numberValidator(str(i))
 
 if __name__ == "__main__":

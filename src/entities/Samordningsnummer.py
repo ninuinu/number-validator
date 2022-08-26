@@ -7,11 +7,11 @@ import re
 class Samordningsnummer:
     def __init__(self, number):
         self.patterns = {
-            "six_plus_four": "(\d{6})\+(\d{4})",
-            "six_hyphen_four": "(\d{6})-(\d{4})",
-            "eight_hyphen_four": "(\d{8})-(\d{4})",
-            "ten_digits": "(\d{10})",
-            "twelve_digits": "(\d{12})"}
+            "six_plus_four": "^(\d{6})\+(\d{4})$",
+            "six_hyphen_four": "^(\d{6})-(\d{4})$",
+            "eight_hyphen_four": "^(\d{8})-(\d{4})$",
+            "ten_digits": "^(\d{10})$",
+            "twelve_digits": "^(\d{12})$"}
         if self.isValid(number):
             self.number = number
 
@@ -21,6 +21,7 @@ class Samordningsnummer:
             processed_pn = self.standardizePnFormat(pn)
             self.isValidDate(processed_pn)
             self.isValidLastNumber(processed_pn)
+
             return True
 
         except Exception as e:
