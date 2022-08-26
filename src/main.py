@@ -2,15 +2,11 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 
-
 from entities.Personnummer import Personnummer
 from entities.Samordningsnummer import Samordningsnummer
 from entities.Organisationsnummer import Organisationsnummer
 
-
-LOGGING = True
-
-def numberValidatorA():
+def numberValidator():
     index=0
     for i in sys.argv:
         if index != 0:
@@ -38,12 +34,6 @@ def numberValidatorA():
             print("\n")
 
         index += 1
-
-def numberValidatorB(i):
-    try:
-        Personnummer(i)
-    except Exception as err:
-        print(err)
 
 
 def test():
@@ -95,8 +85,7 @@ def test():
         "16556601-6399"
     ]
 
-    numberValidatorA()
+    numberValidator()
 
 if __name__ == "__main__":
-
     test()

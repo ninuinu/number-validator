@@ -10,5 +10,6 @@ class TestPersonnummer(unittest.TestCase):
         for j in invalid_personnummer:
             self.assertRaises(Exception, Personnummer, j)
 
+
 if __name__ == '__main__':
     unittest.main()
