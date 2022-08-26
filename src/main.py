@@ -36,13 +36,10 @@ def numberValidator():
 
         index += 1
 
-def test():
-    numberValidator()
-
 if __name__ == "__main__":
     try:
         arg1 = sys.argv[1]
     except IndexError:
         print ("Missing input arguments. Please follow the following format: " + os.path.basename(__file__) + " <arg_1> <arg_2> <arg_3> ... <arg_n>")
         sys.exit(1)
-    test()
+    numberValidator()
