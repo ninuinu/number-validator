@@ -9,7 +9,7 @@ def personnummerPattern():
     }
 
 
-def samordningsnummerPatterns():
+def orgnummerPattern():
     return {
     "six_plus_four": "^(\d{6})\+(\d{4})$",
     "six_hyphen_four": "^(\d{6})-(\d{4})$",
