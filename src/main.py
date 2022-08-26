@@ -3,8 +3,8 @@ from entities.Samordningsnummer import Samordningsnummer
 from entities.Organisationsnummer import Organisationsnummer
 
 def numberValidator(args):
-    Personnummer(args)
-    #Samordningsnummer(args)
+    #Personnummer(args)
+    Samordningsnummer(args)
     #Organisationsnummer(args)
 
 def test():
@@ -34,6 +34,8 @@ def test():
         "0000100000"
     ]
 
+    12662380 - 48201412
+
     test_samordningsnummer = ["141266-2380",
             "201701702384",
             "20080963-2386",
@@ -46,7 +48,7 @@ def test():
             "857202-7566"]
 
 
-    for i in test_personnummer_incorrect:
+    for i in test_samordningsnummer:
         numberValidator(str(i))
 
 if __name__ == "__main__":

@@ -2,66 +2,69 @@
 
 from datetime import datetime
 from src.util.luhnsAlgorithm import luhnsAlgorithm
+from src.util.validPatterns import samordningsnummerPatterns as validPatterns
 import re
 
 class Samordningsnummer:
     def __init__(self, number):
-        self.patterns = {
-            "six_plus_four": "^(\d{6})\+(\d{4})$",
-            "six_hyphen_four": "^(\d{6})-(\d{4})$",
-            "eight_hyphen_four": "^(\d{8})-(\d{4})$",
-            "ten_digits": "^(\d{10})$",
-            "twelve_digits": "^(\d{12})$"}
-        if self.isValid(number):
-            self.number = number
+        assert (self.isValid(number))
+        self.number = number
 
     def isValid(self, pn):
         try:
-            self.isValidFormat(pn)
+            self.checkFormat(pn)
             processed_pn = self.standardizePnFormat(pn)
-            self.isValidDate(processed_pn)
-            self.isValidLastNumber(processed_pn)
-
+            self.checkDate(processed_pn)
+            self.checkLastNumber(processed_pn)
             return True
-
         except Exception as e:
-            print(e)
+            raise e
 
-    def isValidFormat(self, pn):
-        try:
-            for k, v in self.patterns.items():
-                if re.match(v, pn):
-                    return True
-        except:
-            print("ERROR")
+    def checkFormat(self, pn):
+        for value in validPatterns().values():
+            if re.match(value, pn):
+                return True
+        raise Exception("ERROR: Input value \"{}\" has an invalid format".format(pn))
+
 
     def standardizePnFormat(self, pn):
-        if pn:
-            pn = pn.replace("+", "").replace("-", "")
-            pn = pn[2:] if len(pn) == 12 else pn
-            return pn
+        if "+" in pn:
+            pn = pn.replace("+", "")
+            if int(pn[:2]) > int(str(datetime.now().year)[2:]):
+                pn = "18" + pn
+            else:
+                pn = "19" + pn
 
-    # TODO remove hardcoded date prefix
-    def isValidDate(self, pn):
-    #    self.convertToRealDate(pn[4:6])
+        elif "-" in pn:
+            pn = pn.replace("-", "")
+            if len(pn) == 10 and int(pn[:2]) < int(str(datetime.now().year)[2:]):
+                pn = "20" + pn
+            elif len(pn) == 10:
+                pn = "19" + pn
 
-        day = int(pn[4:6])-60
+        elif len(pn) == 10:
+            pn = "19" + pn
+
+        day = str(int(pn[6:-4])-60)
         if len(str(day)) == 1:
             day = "0"+str(day)
 
-        date = "19" + pn[:4] + str(day)
-        if pn:
-            try:
-                datetime.strptime(date, '%Y%m%d')
-                return True
-            except Exception as e:
-                print(e)
-                print("ERROR werwre")
+        pn = pn[:6] + day + pn[-4:]
 
-    def isValidLastNumber(self, pn):
-        luhnsAlgorithm(pn)
+        return pn
+
+    def checkDate(self, pn):
+        try:
+            date = pn[:8]
+            datetime.strptime(date, '%Y%m%d')
+        except:
+            raise Exception("ERROR: Input value \"{}\" Incorrect date format".format(pn))
+
+    def checkLastNumber(self, pn):
+        if luhnsAlgorithm(pn) == int(pn[-1]):
+            return True
+        else:
+            print(luhnsAlgorithm(pn))
+            raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))
 
 
-    def convertToRealDate(self, pn):
-        print(pn)
-        date = "19" + pn[:6]
