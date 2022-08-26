@@ -29,7 +29,7 @@ to run the default test cases provided in the testCases.py file, located under *
     │    │      ├── Samordningsnummer.py          # Samordningsnummer class inherits Personnummer + contains additional logic
     │    │      └── Organisationsnummer.py        # Organisationsnummer class containing relevant verification logic
     │    │── util           
-    │    │      ├── luhnsAlgorithm.py             # helper function for calculating the last digit, which is called in the classes above  
+    │    │      ├── luhnsAlgorithm.py             # helper function for calculating the last digit 
     │    │      └── validPatterns.py              # helper functions for fetching regex-expressions for each verification type 
     │    │   
     │    └── main.py                              # Main point of execution 
