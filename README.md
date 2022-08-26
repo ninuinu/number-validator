@@ -30,7 +30,7 @@ python main.py 900118+9811
 ```
 python TestSuite.py
 ```
-to run the default test cases provided in the testCases.py file, located under **/tests**.
+This command runs the default test cases provided in the testCases.py file, located under **/tests**.
 
 
 ## Project Structure  
