@@ -1,17 +1,12 @@
 
 
-def luhnsAlgorithm(ssn):
+def luhnsAlgorithm(num):
     try:
-        if "+" in ssn:
-            ssn = ssn.replace("+", "")
-            ssn = ssn[:-1]
-        elif len(ssn) == 12:
-            ssn = ssn[2:-1]
-
+        num = num[:-1]
         resulting_sum = 0
-        print(ssn)
-        for index, value in enumerate(ssn):
-            print(value)
+
+        for index, value in enumerate(num):
+
             if index % 2 == 0:
                 temp_res = int(value) * 2
                 if temp_res < 10:
@@ -22,7 +17,6 @@ def luhnsAlgorithm(ssn):
             else:
                 resulting_sum += int(value) * 1
 
-        print(resulting_sum)
         if resulting_sum % 10 == 0:
             return 0
         else:
@@ -30,6 +24,6 @@ def luhnsAlgorithm(ssn):
 
     except Exception as e:
         print("ERROR")
+        print(e)
 
 
-print(luhnsAlgorithm("811218+9876"))
