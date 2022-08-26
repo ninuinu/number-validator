@@ -4,10 +4,11 @@ from src.util.validPatterns import personnummerPattern as validPatterns
 
 import re
 
+
 class Personnummer:
     def __init__(self, number):
-        if self.isValid(number):
-            self.number = number
+        assert (self.isValid(number))
+        self.number = number
 
     def isValid(self, pn):
         try:
@@ -16,9 +17,8 @@ class Personnummer:
             self.checkDate(processed_pn)
             self.checkLastNumber(processed_pn)
             return True
-
         except Exception as e:
-            print(e)
+            raise e
 
     def checkFormat(self, pn):
         for value in validPatterns().values():
@@ -50,12 +50,12 @@ class Personnummer:
         try:
             date = pn[:8]
             datetime.strptime(date, '%Y%m%d')
-        except Exception as e:
-            print(e)
+        except:
+            raise Exception("ERROR: Input value \"{}\" Incorrect date format".format(pn))
 
     def checkLastNumber(self, pn):
         if luhnsAlgorithm(pn) == int(pn[-1]):
             return True
         else:
+            print(luhnsAlgorithm(pn))
             raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))
-

@@ -24,6 +24,7 @@ def luhnsAlgorithm(num):
         if resulting_sum % 10 == 0:
             return 0
         else:
+
             return (10 - (resulting_sum % 10)) % 10
 
 
