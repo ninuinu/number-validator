@@ -7,11 +7,13 @@ class Samordningsnummer(Personnummer):
 
     def standardizeNumber(self, pn):
         pn = Personnummer.standardizeNumber(self, pn)
-
         day = str(int(pn[6:-4])-60)
+
+        if int(day) < 1:
+            raise Exception("ERROR: Input value \"{}\" has an invalid date \"{}\"".format(pn, day))
+
         if len(str(day)) == 1:
             day = "0"+str(day)
 
         pn = pn[:6] + day + pn[-4:]
-
         return pn

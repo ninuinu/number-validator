@@ -64,5 +64,4 @@ class Personnummer:
         if luhnsAlgorithm(pn) == int(pn[-1]):
             return True
         else:
-            print(luhnsAlgorithm(pn))
             raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))

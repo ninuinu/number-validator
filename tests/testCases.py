@@ -33,6 +33,7 @@ valid_samordningsnummer = ["141266-2380",
 
 invalid_samordningsnummer = ["141299-2380",
             "201701002384",
+            "",
             "20080999-2386",
             "7101029295",
             "900160+9811",
@@ -46,5 +47,6 @@ valid_organisationsnummer = ["556614-3185",
 
 invalid_organisationsnummer = ["556614234-3185",
             "16156601-6399",
+            "",
             "260000-1111",
             "85220-7566"]
