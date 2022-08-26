@@ -15,9 +15,8 @@ class Organisationsnummer:
             self.checkThirdDigit(processed_orgNum)
             self.checkLastNumber(processed_orgNum)
             return True
-
-        except Exception as e:
-            raise(e)
+        except Exception as err:
+            raise err
 
     def checkFormat(self, pn):
         for value in validPatterns().values():

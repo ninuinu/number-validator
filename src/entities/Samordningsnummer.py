@@ -5,8 +5,8 @@ class Samordningsnummer(Personnummer):
     def __init__(self, number):
         Personnummer.__init__(self, number)
 
-    def standardizePnFormat(self, pn):
-        pn = Personnummer.standardizePnFormat(self, pn)
+    def standardizeNumber(self, pn):
+        pn = Personnummer.standardizeNumber(self, pn)
 
         day = str(int(pn[6:-4])-60)
         if len(str(day)) == 1:

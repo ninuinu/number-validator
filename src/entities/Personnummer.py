@@ -5,19 +5,19 @@ import re
 
 
 class Personnummer:
-    def __init__(self, number):
-        assert (self.isValid(number))
-        self.number = number
+    def __init__(self, pn):
+        assert (self.isValid(pn))
+        self.pn = pn
 
     def isValid(self, pn):
         try:
             self.checkFormat(pn)
-            processed_pn = self.standardizePnFormat(pn)
+            processed_pn = self.standardizeNumber(pn)
             self.checkDate(processed_pn)
             self.checkLastNumber(processed_pn)
             return True
-        except Exception as e:
-            raise e
+        except Exception as err:
+            raise err
 
     def checkFormat(self, pn):
         for value in validPatterns().values():
@@ -25,23 +25,30 @@ class Personnummer:
                 return True
         raise Exception("ERROR: Input value \"{}\" has an invalid format".format(pn))
 
-    def standardizePnFormat(self, pn):
+    def standardizeNumber(self, pn):
+
+        pn_year = int(pn[:2])  # of format YY
+        currentYear = int(str(datetime.now().year)[2:])  # of format YY
+
         if "+" in pn:
             pn = pn.replace("+", "")
-            if int(pn[:2]) > int(str(datetime.now().year)[2:]):
+            if pn_year > currentYear:
                 pn = "18" + pn
             else:
                 pn = "19" + pn
 
         elif "-" in pn:
             pn = pn.replace("-", "")
-            if len(pn) == 10 and int(pn[:2]) < int(str(datetime.now().year)[2:]):
+            if len(pn) == 10 and pn_year < currentYear:
                 pn = "20" + pn
             elif len(pn) == 10:
                 pn = "19" + pn
 
-        elif len(pn) == 10:
-            pn = "19" + pn
+        else:
+            if len(pn) == 10 and pn_year > currentYear:
+                pn = "19" + pn
+            elif len(pn) == 10 and pn_year < currentYear:
+                pn = "20" + pn
 
         return pn
 
@@ -50,7 +57,7 @@ class Personnummer:
             date = pn[:8]
             datetime.strptime(date, '%Y%m%d')
         except:
-            raise Exception("ERROR: Input value \"{}\" Incorrect date format".format(pn))
+            raise Exception("ERROR: Input value \"{}\" has an invalid date".format(pn))
 
     def checkLastNumber(self, pn):
         if luhnsAlgorithm(pn) == int(pn[-1]):

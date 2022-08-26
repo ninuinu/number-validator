@@ -1,11 +1,50 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd().parent))
+
+
 from entities.Personnummer import Personnummer
 from entities.Samordningsnummer import Samordningsnummer
 from entities.Organisationsnummer import Organisationsnummer
 
-def numberValidator(args):
-    #Personnummer(args)
-    #Samordningsnummer(args)
-    Organisationsnummer(args)
+
+LOGGING = True
+
+def numberValidatorA():
+    index=0
+    for i in sys.argv:
+        if index != 0:
+            initial = "> \"{}\" is ".format(i)
+            try:
+                Personnummer(i)
+                print(initial + "a valid personnummer")
+            except Exception as err:
+                print(initial + " not a valid personnummer due to the following error:")
+                print(err)
+            print("\n")
+            try:
+                Samordningsnummer(i)
+                print(initial + "a valid samordningsnummer")
+            except Exception as err:
+                print(initial + " not a valid samordningsnummer due to the following error:")
+                print(err)
+            print("\n")
+            try:
+                Organisationsnummer(i)
+                print(initial + "a valid organisationsnummer")
+            except Exception as err:
+                print(initial + " not a valid organisationsnummer due to the following error:")
+                print(err)
+            print("\n")
+
+        index += 1
+
+def numberValidatorB(i):
+    try:
+        Personnummer(i)
+    except Exception as err:
+        print(err)
+
 
 def test():
     print("testing")
@@ -22,7 +61,10 @@ def test():
             "194510168885",
             "900118+9811",
             "189102279800",
-            "189912299816"]
+            "189912299816",
+            "9606109503",
+            "0510054422"]
+
 
     test_personnummer_incorrect = [
         "",
@@ -47,9 +89,14 @@ def test():
             "262000-1111",
             "857202-7566"]
 
+    test_random=[
+        "141206-2380",
+        "201701702384",
+        "16556601-6399"
+    ]
 
-    for i in test_organisationsnummer:
-        numberValidator(str(i))
+    numberValidatorA()
 
 if __name__ == "__main__":
+
     test()
