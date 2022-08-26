@@ -11,31 +11,30 @@ def numberValidator():
     index=0
     for i in sys.argv:
         if index != 0:
-            initial = "> \"{}\" is ".format(i)
+            startingString = "> \"{}\" is ".format(i)
             try:
                 Personnummer(i)
-                print(initial + "a valid personnummer")
+                print(startingString + "a valid personnummer")
             except Exception as err:
-                print(initial + " not a valid personnummer due to the following error:")
+                print(startingString + " not a valid personnummer due to the following error:")
                 print(err)
             print("\n")
             try:
                 Samordningsnummer(i)
-                print(initial + "a valid samordningsnummer")
+                print(startingString + "a valid samordningsnummer")
             except Exception as err:
-                print(initial + " not a valid samordningsnummer due to the following error:")
+                print(startingString + " not a valid samordningsnummer due to the following error:")
                 print(err)
             print("\n")
             try:
                 Organisationsnummer(i)
-                print(initial + "a valid organisationsnummer")
+                print(startingString + "a valid organisationsnummer")
             except Exception as err:
-                print(initial + " not a valid organisationsnummer due to the following error:")
+                print(startingString + " not a valid organisationsnummer due to the following error:")
                 print(err)
             print("\n")
 
         index += 1
-
 
 def test():
     numberValidator()

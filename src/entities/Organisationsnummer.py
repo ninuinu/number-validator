@@ -8,21 +8,21 @@ class Organisationsnummer:
         assert (self.isValid(number))
         self.number = number
 
-    def isValid(self, pn):
+    def isValid(self, orgNum):
         try:
-            self.checkFormat(pn)
-            processed_orgNum = self.standardizeOrgNumberFormat(pn)
-            self.checkThirdDigit(processed_orgNum)
-            self.checkLastNumber(processed_orgNum)
+            self.checkFormat(orgNum)
+            processedOrgNum = self.standardizeOrgNumberFormat(orgNum)
+            self.checkThirdDigit(processedOrgNum)
+            self.checkLastNumber(processedOrgNum)
             return True
         except Exception as err:
             raise err
 
-    def checkFormat(self, pn):
+    def checkFormat(self, orgNum):
         for value in validPatterns().values():
-            if re.match(value, pn):
+            if re.match(value, orgNum):
                 return True
-        raise Exception("ERROR: Input value \"{}\" has an invalid format".format(pn))
+        raise Exception("ERROR: Input value \"{}\" has an invalid format".format(orgNum))
 
     def standardizeOrgNumberFormat(self, orgNum):
         orgNum = orgNum.replace("-", "")
@@ -30,15 +30,13 @@ class Organisationsnummer:
             orgNum = orgNum[2:]
         return orgNum
 
-    def checkThirdDigit(self, pn):
-        thirdDigit = int(pn[2])
+    def checkThirdDigit(self, orgNum):
+        thirdDigit = int(orgNum[2])
         if thirdDigit >= 2:
             return True
-        else:
-            raise Exception("ERROR: Input value \"{}\" has an invalid third digit".format(pn))
+        raise Exception("ERROR: Input value \"{}\" has an invalid third digit".format(orgNum))
 
-    def checkLastNumber(self, pn):
-        if luhnsAlgorithm(pn) == int(pn[-1]):
+    def checkLastNumber(self, orgNum):
+        if luhnsAlgorithm(orgNum) == int(orgNum[-1]):
             return True
-        else:
-            raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))
+        raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(orgNum))

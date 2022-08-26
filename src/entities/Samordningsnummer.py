@@ -5,15 +5,15 @@ class Samordningsnummer(Personnummer):
     def __init__(self, number):
         Personnummer.__init__(self, number)
 
-    def standardizeNumber(self, pn):
-        pn = Personnummer.standardizeNumber(self, pn)
-        day = str(int(pn[6:-4])-60)
+    def standardizeNumber(self, sn):
+        sn = Personnummer.standardizeNumber(self, sn)
+        day = str(int(sn[6:-4])-60)
 
         if int(day) < 1:
-            raise Exception("ERROR: Input value \"{}\" has an invalid date \"{}\"".format(pn, day))
+            raise Exception("ERROR: Input value \"{}\" has an invalid date \"{}\"".format(sn, day))
 
         if len(str(day)) == 1:
             day = "0"+str(day)
 
-        pn = pn[:6] + day + pn[-4:]
-        return pn
+        sn = sn[:6] + day + sn[-4:]
+        return sn

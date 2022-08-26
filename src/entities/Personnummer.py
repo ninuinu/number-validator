@@ -12,9 +12,9 @@ class Personnummer:
     def isValid(self, pn):
         try:
             self.checkFormat(pn)
-            processed_pn = self.standardizeNumber(pn)
-            self.checkDate(processed_pn)
-            self.checkLastNumber(processed_pn)
+            processedPn = self.standardizeNumber(pn)
+            self.checkDate(processedPn)
+            self.checkLastNumber(processedPn)
             return True
         except Exception as err:
             raise err
@@ -27,27 +27,27 @@ class Personnummer:
 
     def standardizeNumber(self, pn):
 
-        pn_year = int(pn[:2])  # of format YY
+        pnYear = int(pn[:2])  # of format YY
         currentYear = int(str(datetime.now().year)[2:])  # of format YY
 
         if "+" in pn:
             pn = pn.replace("+", "")
-            if pn_year > currentYear:
+            if pnYear > currentYear:
                 pn = "18" + pn
             else:
                 pn = "19" + pn
 
         elif "-" in pn:
             pn = pn.replace("-", "")
-            if len(pn) == 10 and pn_year < currentYear:
+            if len(pn) == 10 and pnYear < currentYear:
                 pn = "20" + pn
             elif len(pn) == 10:
                 pn = "19" + pn
 
         else:
-            if len(pn) == 10 and pn_year > currentYear:
+            if len(pn) == 10 and pnYear > currentYear:
                 pn = "19" + pn
-            elif len(pn) == 10 and pn_year < currentYear:
+            elif len(pn) == 10 and pnYear < currentYear:
                 pn = "20" + pn
 
         return pn
@@ -63,5 +63,4 @@ class Personnummer:
     def checkLastNumber(self, pn):
         if luhnsAlgorithm(pn) == int(pn[-1]):
             return True
-        else:
-            raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))
+        raise Exception("ERROR: Input value \"{}\" has an invalid last digit".format(pn))
