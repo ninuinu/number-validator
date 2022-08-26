@@ -13,7 +13,14 @@
 python main.py <args_1> <args_2> <args_3> ... <args_n>
 ```
 
-where the input arguments resemble the personnummer, samordningsnummer or organisationsnummer sequence that you want to test. The program will validate whether the string is a personnummer, samordningsnummer or organisationsnummer.
+where the input arguments resemble the personnummer, samordningsnummer or organisationsnummer sequence that you want to test. The program will validate whether the string is a personnummer, samordningsnummer or organisationsnummer. Below is an example input and output:
+
+```
+python main.py 900118+9811
+
+```
+
+![example](https://user-images.githubusercontent.com/28160364/186970549-7687064f-fb64-405a-9ee9-18d4937c1bb7.PNG)
 
 
 ## To run tests:
