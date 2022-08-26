@@ -1,4 +1,6 @@
-# number-validator
+### number-validator
+
+Number validator is a Python program that checks whether a string is a valid Swedish social security number (personnummer), temporary social security number (samordningsnummer) or business registration number (organisationsnummer).
 
 ## Prerequisites:
 
@@ -17,7 +19,6 @@ where the input arguments resemble the personnummer, samordningsnummer or organi
 
 ```
 python main.py 900118+9811
-
 ```
 
 ![example](https://user-images.githubusercontent.com/28160364/186970549-7687064f-fb64-405a-9ee9-18d4937c1bb7.PNG)
